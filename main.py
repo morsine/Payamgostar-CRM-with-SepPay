@@ -45,8 +45,8 @@ def handleinput(name):
         wsdl = "http://192.168.3.10/services/api/iopportunity.svc?wsdl"
         client = Client(wsdl, plugins=[history])
         #convert arabic characters to persian
-        #rname = name.replace("ي", "ی")
-        #rname = name.replace("ك", "ک")
+        rname = name.replace("ي", "ی")
+        rname = name.replace("ك", "ک")
         #request to be sent to API
         request_data = {
             'userName': 'admin',
