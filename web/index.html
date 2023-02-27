@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V16</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/vid.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="container-login100" style="background-image: url('images/bg.jpg');">
+	<div class="limiter">
+
+			<div class="wrap-login100 p-t-30 p-b-50">
+				<span class="login100-form-title p-b-41">
+					سیستم خودکار احراز هویت
+				</span>
+				<form class="login100-form validate-form p-b-33 p-t-5">
+					<div style="text-align: center" id="markhtml"></div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter username" id="form1">
+						<input class="input100" type="text" name="username" placeholder="نام و نام خانوادگی" id='name'>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter number" id="form2">
+						<input class="input100" type="number" name="number" placeholder="شماره حواله" id='number'>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+
+					<div class="container-login100-form-btn m-t-32 twoToneButton">
+						<button class="login100-form-btn twoToneButton" id='btn'>
+							برسی
+						</button>
+					</div>
+					<div
+					<strong>
+						<div style="text-align: center" id="content"></div>
+					</strong>
+					<div class="container-login100-form-btn m-t-32 twoToneButton" id="buttons" style="display: none;">
+						<button onclick="callPython1()" class="login100-form-btn twoToneButton" id='yes'>
+							بله
+						</button>
+						<button onclick="callPython2()" class="login100-form-btn twoToneButton" id='no'>
+							خیر
+						</button>
+					</div>
+					<div class="container-login100-form-btn m-t-32 twoToneButton" id="shutter" style="display: none;">
+						<button onclick="callPython3()" class="login100-form-btn twoToneButton" id='yes'>
+							اسکن مدارک
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/eel.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script type="text/javascript">
+        $(function(){
+
+                    eel.expose(say_hello_js);               // Expose this function to Python
+                    function say_hello_js(name) {
+                    console.log("Hello from " + name);
+                    }
+					function say_hello_js(number) {
+						console.log("Hello from " + number);
+						}
+                    say_hello_js("Javascript World!");
+                    //eel.handleinput("connected!");  // Call a Python function
+                    const targetDiv = document.getElementById("form1");
+					const targetDiv2= document.getElementById("form2");
+                    $("#btn").click(function(){
+                        eel.handleinput($("#name").val());
+                        $('#name').val('');
+						eel.handleinput($("#number").val());
+                        $('#number').val('');
+						targetDiv.style.display = "none";
+						targetDiv2.style.display = "none";
+                    });
+					
+
+						
+        }); 
+		
+		
+	
+			function addText(text) {
+				var div = document.getElementById("content");
+				div.innerHTML += "<br>" + text;
+			}
+			function enablebuttons(text) {
+				var x = document.getElementById("buttons");
+				if (x.style.display === "none") {
+				  x.style.display = "";
+				} else {
+				  x.style.display = "none";
+				}
+			}
+			function enableshutter(text) {
+				var x = document.getElementById("shutter");
+				if (x.style.display === "none") {
+				  x.style.display = "";
+				} else {
+				  x.style.display = "none";
+				}
+			}
+			function completed(text) {
+				var twoToneButton = document.querySelector('.twoToneButton');
+				twoToneButton.classList.remove('lds-dual-ring');
+				var div = document.getElementById("markhtml");
+				div.innerHTML += '<img src="images/ok.png" alt="ok" style="width:50%;">';
+			}
+			function error(text) {
+				var twoToneButton = document.querySelector('.twoToneButton');
+				twoToneButton.classList.remove('lds-dual-ring');
+				var div = document.getElementById("markhtml");
+				div.innerHTML += '<img src="images/error.png" alt="ok" style="width:50%;">';
+			}
+			function waitinput(text) {
+				var twoToneButton = document.querySelector('.twoToneButton');
+				twoToneButton.classList.remove('lds-dual-ring');
+			}
+			function loading(text) {
+				var twoToneButton = document.querySelector('.twoToneButton');
+				twoToneButton.classList.add('lds-dual-ring');
+			}
+			function refreshPage(text) {
+				window.location.reload();
+			}
+			eel.expose(addText);
+			eel.expose(enablebuttons);
+			eel.expose(enableshutter);
+			eel.expose(completed);
+			eel.expose(waitinput);
+			eel.expose(loading);
+			eel.expose(error);
+			eel.expose(refreshPage);
+			
+
+        </script>
+<script>
+	$(function(){
+    
+		var twoToneButton = document.querySelector('.twoToneButton');
+		
+		twoToneButton.addEventListener("click", function() {
+			twoToneButton.innerHTML = "";
+			twoToneButton.classList.add('lds-dual-ring');
+			
+		  setTimeout( 
+				function  (){  
+					
+					twoToneButton.innerHTML = "";
+					
+				}, 6000);
+		}, false);
+		
+	});
+
+</script>
+<script>
+	function callPython1() {
+		eel.alreadyscanned()
+	}
+	function callPython2() {
+		eel.notscanned()
+	}
+	function callPython3() {
+		eel.scan()
+	}
+</script>
+</body>
+</html>
