@@ -152,7 +152,7 @@ iframe {
   border-radius: 10px;
   background-color: #ffffff21;
   backdrop-filter: blur(15px);
-  background-color: rgba(0, 0, 0, 0.459);
+  background-color: rgb(39 39 39 / 46%);
 }
 
 .login100-form-logo {

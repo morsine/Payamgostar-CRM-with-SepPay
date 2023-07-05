@@ -4,6 +4,7 @@
 	<title>Login V16</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preload" href="BNazanin.woff2" as="font" type="font/woff2" crossorigin>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -34,16 +35,20 @@
 
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					سیستم خودکار احراز هویت
+					فولاد سترگ ماکان
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 					<div style="text-align: center" id="markhtml"></div>
 					<div class="wrap-input100 validate-input" data-validate = "Enter username" id="form1">
-						<input class="input100" type="text" name="username" placeholder="نام و نام خانوادگی" id='name'>
+						<input class="input100" type="text" name="username" placeholder="نام خانوادگی" id='name'>
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Enter number" id="form2">
 						<input class="input100" type="number" name="number" placeholder="شماره حواله" id='number'>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter number" id="form3">
+						<input class="input100" type="number" name="number" placeholder="ممیزی (در صورت عدم وجود خالی بگذارید)" id='momayezi'>
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
@@ -104,17 +109,24 @@
 					function say_hello_js(number) {
 						console.log("Hello from " + number);
 						}
+						function say_hello_js(momayezi) {
+							console.log("Hello from " + momayezi);
+							}
                     say_hello_js("Javascript World!");
                     //eel.handleinput("connected!");  // Call a Python function
                     const targetDiv = document.getElementById("form1");
 					const targetDiv2= document.getElementById("form2");
+					const targetDiv3= document.getElementById("form3");
                     $("#btn").click(function(){
                         eel.handleinput($("#name").val());
                         $('#name').val('');
 						eel.handleinput($("#number").val());
                         $('#number').val('');
+						eel.handleinput($("#momayezi").val());
+                        $('#momayezi').val('');
 						targetDiv.style.display = "none";
 						targetDiv2.style.display = "none";
+						targetDiv3.style.display = "none";
                     });
 					
 
